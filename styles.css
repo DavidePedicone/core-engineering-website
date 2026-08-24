@@ -165,16 +165,17 @@ main {
 }
 
 .splash .tagline {
-  font-size: clamp(18px, 2.4vw, 22px);
+  font-size: 18px;
   font-weight: 500;
   color: var(--text-soft);
   max-width: 42ch;
   text-transform: uppercase;
   letter-spacing: .04em;
+  margin-top: -14px;
 }
 
 .coming-soon {
-  font-size: 13px;
+  font-size: 25px;
   font-weight: 600;
   letter-spacing: .18em;
   text-transform: uppercase;

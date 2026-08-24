@@ -1,0 +1,151 @@
+:root {
+  --bg: #FAF4E8;
+  --surface: #FFFBF2;
+  --text: #464646;
+  --text-soft: #8A8378;
+  --accent: #BB9C35;
+  --border: #E4DCC8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Josefin Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Header / nav */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 48px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+.logo .brush {
+  fill: var(--accent);
+}
+
+.logo .mark {
+  fill: var(--text);
+}
+
+.site-nav {
+  display: flex;
+  gap: 32px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+
+.site-nav a {
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover {
+  border-bottom-color: var(--border);
+}
+
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--accent);
+}
+
+/* Main content areas */
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px 96px;
+  gap: 28px;
+}
+
+.tagline {
+  font-size: clamp(22px, 3.4vw, 34px);
+  font-weight: 500;
+  max-width: 32ch;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 14px 32px;
+  border: 1px solid var(--text);
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cta:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.placeholder-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+}
+
+.placeholder-note {
+  color: var(--text-soft);
+  font-size: 16px;
+  max-width: 40ch;
+}
+
+.back-link {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Footer */
+
+.site-footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    padding: 24px;
+  }
+  .site-nav {
+    gap: 20px;
+    font-size: 14px;
+  }
+  .logo {
+    width: 130px;
+  }
+}

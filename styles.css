@@ -137,6 +137,70 @@ main {
   color: var(--text-soft);
 }
 
+/* Splash (no-nav) layout */
+
+.splash {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 32px;
+  padding: 64px 24px;
+}
+
+.splash-logo {
+  width: 260px;
+  height: auto;
+  display: block;
+}
+
+.splash .tagline {
+  font-size: clamp(18px, 2.4vw, 22px);
+  font-weight: 500;
+  color: var(--text-soft);
+  max-width: 42ch;
+}
+
+.coming-soon {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.contact-block a:hover {
+  color: var(--text);
+}
+
+.social-icons {
+  display: flex;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.social-icons svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--text-soft);
+}
+
+.social-icons a:hover svg {
+  fill: var(--accent);
+}
+
 @media (max-width: 560px) {
   .site-header {
     padding: 24px;
@@ -147,5 +211,8 @@ main {
   }
   .logo {
     width: 130px;
+  }
+  .splash-logo {
+    width: 200px;
   }
 }

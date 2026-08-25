@@ -138,10 +138,10 @@ a {
   box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--dot);
 }
 
-.circle-nav a[data-section="home"]     { --dot: var(--gold); }
-.circle-nav a[data-section="services"] { --dot: var(--terracotta); }
-.circle-nav a[data-section="projects"] { --dot: var(--ink-blue); }
-.circle-nav a[data-section="contacts"] { --dot: var(--ink-teal); }
+.circle-nav a[data-section="home"]     { --dot: var(--ink-blue); }
+.circle-nav a[data-section="services"] { --dot: var(--ink-teal); }
+.circle-nav a[data-section="projects"] { --dot: var(--terracotta); }
+.circle-nav a[data-section="contacts"] { --dot: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
   .circle-nav .dot,

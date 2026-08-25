@@ -70,13 +70,48 @@ a {
   position: relative;
   top: 3.25px;
 
-  /* Runs on every load of a section page, transition or not. */
+  /* Covers a plain load, where there is no transition to hang the motion off. */
   animation: section-slide-in 900ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+/* During a transition the pseudo-elements below drive it instead. A CSS animation
+   on the element itself is no good there: the incoming document is rendered
+   before it is revealed, so its animation clock is already partly spent by the
+   time the page appears. */
+:root:active-view-transition .section-name {
+  animation: none;
+}
+
+/* Each section gets its OWN transition name. Sharing one name would pair the
+   outgoing and incoming text into a single group, and the browser would tween
+   between their positions instead of playing an exit and an entrance. */
+.section-values .section-name   { view-transition-name: name-values; }
+.section-services .section-name { view-transition-name: name-services; }
+.section-projects .section-name { view-transition-name: name-projects; }
+.section-contacts .section-name { view-transition-name: name-contacts; }
+
+::view-transition-new(name-values),
+::view-transition-new(name-services),
+::view-transition-new(name-projects),
+::view-transition-new(name-contacts) {
+  animation: section-slide-in 900ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+::view-transition-old(name-values),
+::view-transition-old(name-services),
+::view-transition-old(name-projects),
+::view-transition-old(name-contacts) {
+  animation: section-slide-out 250ms ease-in both;
 }
 
 @keyframes section-slide-in {
   from { opacity: 0; transform: translateX(150px); }
   to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes section-slide-out {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(40px); }
 }
 
 .logo {
@@ -221,7 +256,9 @@ a {
   .circle-nav .label {
     transition-duration: .01ms;
   }
-  .section-name {
+  .section-name,
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation: none;
   }
   ::view-transition-group(*),

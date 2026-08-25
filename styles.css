@@ -87,7 +87,7 @@ a {
 .circle-nav {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .circle-nav a {
@@ -95,7 +95,7 @@ a {
   place-items: center;
   padding: 6px 0;
   min-height: 30px;
-  min-width: 66px;
+  min-width: 52px;
 }
 
 .circle-nav .dot,
@@ -105,14 +105,14 @@ a {
 }
 
 .circle-nav .dot {
-  width: 19.5px;
-  height: 19.5px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--dot);
 }
 
 .circle-nav .label {
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 500;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -196,9 +196,11 @@ main {
 }
 
 .placeholder-note {
-  color: var(--text-soft);
-  font-size: 16px;
-  max-width: 40ch;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .back-link {
@@ -306,10 +308,10 @@ main {
     font-size: 14px;
   }
   .circle-nav {
-    gap: 6px;
+    gap: 4px;
   }
   .circle-nav a {
-    min-width: 62px;
+    min-width: 50px;
   }
   .circle-nav .label {
     letter-spacing: .04em;

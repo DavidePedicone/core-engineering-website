@@ -70,17 +70,12 @@ a {
   position: relative;
   top: 3.25px;
 
-  /* Covers a plain load, where there is no transition to hang the motion off. */
-  animation: section-slide-in 900ms cubic-bezier(.22, .61, .36, 1) both;
 }
 
-/* During a transition the pseudo-elements below drive it instead. A CSS animation
-   on the element itself is no good there: the incoming document is rendered
-   before it is revealed, so its animation clock is already partly spent by the
-   time the page appears. */
-:root:active-view-transition .section-name {
-  animation: none;
-}
+/* The motion lives entirely on the transition pseudo-elements below. Putting a
+   CSS animation on the element itself does not work here: suppressing it during
+   the transition only defers it, so it replays the instant the transition ends
+   and the text lands twice. On a plain load the name simply appears. */
 
 /* Each section gets its OWN transition name. Sharing one name would pair the
    outgoing and incoming text into a single group, and the browser would tween

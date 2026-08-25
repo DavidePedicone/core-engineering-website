@@ -95,7 +95,7 @@ a {
   place-items: center;
   padding: 6px 0;
   min-height: 30px;
-  min-width: 88px;
+  min-width: 66px;
 }
 
 .circle-nav .dot,
@@ -112,7 +112,7 @@ a {
 }
 
 .circle-nav .label {
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -309,10 +309,9 @@ main {
     gap: 6px;
   }
   .circle-nav a {
-    min-width: 76px;
+    min-width: 62px;
   }
   .circle-nav .label {
-    font-size: 12px;
     letter-spacing: .04em;
   }
   .logo {

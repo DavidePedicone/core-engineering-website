@@ -42,8 +42,8 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 28px 48px;
-  min-height: 108px;
+  padding: 34px 48px 28px;
+  min-height: 114px;
   flex-wrap: wrap;
 }
 
@@ -53,22 +53,25 @@ a {
 
 .brand {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 16px;
 }
 
 .section-name {
+  margin: 0;
   font-size: 25px;
   font-weight: 500;
-  letter-spacing: .02em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   color: var(--text);
-  animation: section-slide-in .55s cubic-bezier(.2,.7,.3,1) both;
-  animation-delay: .1s;
+  /* Nudge so the cap-height box (not the line box) centres on the dot centre. */
+  position: relative;
+  top: 3.25px;
 }
 
-@keyframes section-slide-in {
-  from { opacity: 0; transform: translate(14px, 30px); }
-  to   { opacity: 1; transform: translate(0, 0); }
+/* Hidden until script.js glides it out of the dot; without JS it just shows. */
+.js .section-name {
+  opacity: 0;
 }
 
 .logo {
@@ -76,6 +79,12 @@ a {
   height: auto;
   display: block;
   view-transition-name: brand-logo;
+}
+
+/* The dots and section name sit 6px lower; keep the logo where it was. */
+.site-header .logo {
+  position: relative;
+  top: -6px;
 }
 
 .logo .brush {
@@ -141,7 +150,7 @@ a {
   font-weight: 500;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: var(--dot);
+  color: var(--text);
   white-space: nowrap;
   opacity: 0;
   transform: translateY(4px);
@@ -173,6 +182,15 @@ a {
 .circle-nav a[data-section="services"] .dot { view-transition-name: dot-services; }
 .circle-nav a[data-section="projects"] .dot { view-transition-name: dot-projects; }
 .circle-nav a[data-section="contacts"] .dot { view-transition-name: dot-contacts; }
+
+/* Let the dots travel unhurriedly between slots */
+::view-transition-group(dot-profile),
+::view-transition-group(dot-services),
+::view-transition-group(dot-projects),
+::view-transition-group(dot-contacts) {
+  animation-duration: 750ms;
+  animation-timing-function: cubic-bezier(.45, 0, .2, 1);
+}
 
 .section-profile  { --section: var(--ink-blue); }
 .section-services { --section: var(--ink-teal); }
@@ -344,8 +362,8 @@ main {
 
 @media (max-width: 560px) {
   .site-header {
-    padding: 24px;
-    min-height: 90px;
+    padding: 30px 24px 24px;
+    min-height: 96px;
   }
   .site-nav {
     gap: 20px;

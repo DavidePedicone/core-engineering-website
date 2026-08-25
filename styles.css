@@ -69,11 +69,37 @@ a {
   /* Nudge so the cap-height box (not the line box) centres on the dot centre. */
   position: relative;
   top: 3.25px;
+
+  /* Taken out of the page-wide crossfade so it can be animated on its own terms. */
+  view-transition-name: section-name;
+
+  /* Plays on a normal load. During a view transition the pseudo-elements below
+     drive the motion instead, so this is switched off to avoid doubling up. */
+  animation: section-slide-in 900ms cubic-bezier(.22, .61, .36, 1) both;
 }
 
-/* Hidden until script.js glides it out of the dot; without JS it just shows. */
-.js .section-name {
-  opacity: 0;
+:root:active-view-transition .section-name {
+  animation: none;
+}
+
+@keyframes section-slide-in {
+  from { opacity: 0; transform: translateX(150px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Arriving name glides in from the right; the outgoing one clears off quickly so
+   the two are never on screen together. */
+::view-transition-new(section-name) {
+  animation: section-slide-in 900ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+::view-transition-old(section-name) {
+  animation: section-slide-out 200ms ease-in both;
+}
+
+@keyframes section-slide-out {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(40px); }
 }
 
 .logo {
@@ -204,7 +230,9 @@ a {
   .circle-nav .label {
     transition-duration: .01ms;
   }
-  .section-name {
+  .section-name,
+  ::view-transition-new(section-name),
+  ::view-transition-old(section-name) {
     animation: none;
   }
   ::view-transition-group(*),

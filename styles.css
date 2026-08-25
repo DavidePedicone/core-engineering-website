@@ -12,6 +12,10 @@
   --ink-teal: #458EA1;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -47,10 +51,31 @@ a {
   justify-content: flex-end;
 }
 
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.section-name {
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--section);
+  animation: section-slide-in .55s cubic-bezier(.2,.7,.3,1) both;
+  animation-delay: .1s;
+}
+
+@keyframes section-slide-in {
+  from { opacity: 0; transform: translate(14px, 30px); }
+  to   { opacity: 1; transform: translate(0, 0); }
+}
+
 .logo {
   width: 160px;
   height: auto;
   display: block;
+  view-transition-name: brand-logo;
 }
 
 .logo .brush {
@@ -138,15 +163,34 @@ a {
   box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--dot);
 }
 
-.circle-nav a[data-section="home"]     { --dot: var(--ink-blue); }
+.circle-nav a[data-section="profile"]  { --dot: var(--ink-blue); }
 .circle-nav a[data-section="services"] { --dot: var(--ink-teal); }
 .circle-nav a[data-section="projects"] { --dot: var(--terracotta); }
 .circle-nav a[data-section="contacts"] { --dot: var(--gold); }
+
+/* Named so the browser morphs each dot between its old and new slot */
+.circle-nav a[data-section="profile"]  .dot { view-transition-name: dot-profile; }
+.circle-nav a[data-section="services"] .dot { view-transition-name: dot-services; }
+.circle-nav a[data-section="projects"] .dot { view-transition-name: dot-projects; }
+.circle-nav a[data-section="contacts"] .dot { view-transition-name: dot-contacts; }
+
+.section-profile  { --section: var(--ink-blue); }
+.section-services { --section: var(--ink-teal); }
+.section-projects { --section: var(--terracotta); }
+.section-contacts { --section: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
   .circle-nav .dot,
   .circle-nav .label {
     transition-duration: .01ms;
+  }
+  .section-name {
+    animation: none;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: .01ms;
   }
 }
 

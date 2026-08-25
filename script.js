@@ -1,8 +1,9 @@
 // The section name starts hidden (see `.js .section-name` in styles.css) and is
-// revealed by gliding horizontally out of its own coloured dot into place beside
-// the logo. Hiding it up front avoids a flash of the text in its final position.
+// revealed by gliding out of its own coloured dot into place beside the logo.
+// Hiding it up front avoids a flash of the text sitting in its final position.
 (function () {
   var revealed = false;
+  var waitingForTransition = false;
 
   function reveal() {
     if (revealed) return;
@@ -23,8 +24,10 @@
     var n = name.getBoundingClientRect();
     var d = dot.getBoundingClientRect();
 
-    // Purely horizontal travel: start out at the dot, glide left into place.
-    var dx = (d.left + d.width / 2) - (n.left + n.width / 2);
+    // Always a purely horizontal glide, and always entering from the right, so the
+    // motion reads the same whether the dots sit beside the name (wide screens) or
+    // on their own row below it (narrow screens).
+    var dx = Math.abs((d.left + d.width / 2) - (n.left + n.width / 2));
 
     name.animate(
       [
@@ -39,15 +42,33 @@
     // Measure once the webfont is in, otherwise the text box is the wrong width.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(reveal);
-      setTimeout(reveal, 1200); // safety net if the font never settles
     } else {
       reveal();
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-  } else {
-    start();
+  // When the page arrives via a cross-document view transition, the dots are still
+  // sliding into their new slots. Waiting for that to settle stops the name from
+  // animating twice over — once under the outgoing snapshot, once for real.
+  if ('onpagereveal' in window) {
+    window.addEventListener('pagereveal', function (event) {
+      if (event.viewTransition) {
+        waitingForTransition = true;
+        event.viewTransition.finished.then(start, start);
+      }
+    });
   }
+
+  function startIfNoTransition() {
+    if (!waitingForTransition) start();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startIfNoTransition);
+  } else {
+    startIfNoTransition();
+  }
+
+  // Safety net: never leave the name invisible if something above stalls.
+  setTimeout(reveal, 2500);
 })();

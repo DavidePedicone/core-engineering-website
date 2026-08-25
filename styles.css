@@ -22,6 +22,8 @@
 
 body {
   margin: 0;
+  /* The section name can start beyond the right edge while it glides in. */
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
   font-family: 'Josefin Sans', sans-serif;
@@ -172,19 +174,19 @@ a {
   box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--dot);
 }
 
-.circle-nav a[data-section="profile"]  { --dot: var(--ink-blue); }
+.circle-nav a[data-section="values"]  { --dot: var(--ink-blue); }
 .circle-nav a[data-section="services"] { --dot: var(--ink-teal); }
 .circle-nav a[data-section="projects"] { --dot: var(--terracotta); }
 .circle-nav a[data-section="contacts"] { --dot: var(--gold); }
 
 /* Named so the browser morphs each dot between its old and new slot */
-.circle-nav a[data-section="profile"]  .dot { view-transition-name: dot-profile; }
+.circle-nav a[data-section="values"]  .dot { view-transition-name: dot-values; }
 .circle-nav a[data-section="services"] .dot { view-transition-name: dot-services; }
 .circle-nav a[data-section="projects"] .dot { view-transition-name: dot-projects; }
 .circle-nav a[data-section="contacts"] .dot { view-transition-name: dot-contacts; }
 
 /* Let the dots travel unhurriedly between slots */
-::view-transition-group(dot-profile),
+::view-transition-group(dot-values),
 ::view-transition-group(dot-services),
 ::view-transition-group(dot-projects),
 ::view-transition-group(dot-contacts) {
@@ -192,7 +194,7 @@ a {
   animation-timing-function: cubic-bezier(.45, 0, .2, 1);
 }
 
-.section-profile  { --section: var(--ink-blue); }
+.section-values  { --section: var(--ink-blue); }
 .section-services { --section: var(--ink-teal); }
 .section-projects { --section: var(--terracotta); }
 .section-contacts { --section: var(--gold); }
@@ -369,8 +371,17 @@ main {
     gap: 20px;
     font-size: 14px;
   }
+  /* Too narrow for logo + name + dots on one line: give the dots their own
+     row, aligned right so they stay where the eye expects them. */
+  .brand {
+    width: 100%;
+  }
+  /* Line the first dot's left edge up with the left edge of the "c" in the logo.
+     The -13px cancels the padding each dot gets inside its 50px hit area. */
   .circle-nav {
     gap: 4px;
+    margin-right: auto;
+    margin-left: -13px;
   }
   .circle-nav a {
     min-width: 50px;

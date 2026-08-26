@@ -348,18 +348,17 @@ main {
   color: var(--accent);
 }
 
-/* Occupies space but shows nothing, to keep two pages' layouts in step. */
-.layout-spacer {
-  visibility: hidden;
-}
-
 /* Contacts: same resting place as the block on the home page. Out of flow so the
    back link above it centres exactly as it does on the other subpages. */
 .contact-block-pinned {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   bottom: 96px;
+  /* Span the full width, inset by the same 24px the home page's splash uses, so
+     the address has exactly as much room here and breaks in the same places.
+     Centring with left:50% instead would leave it only half the width to sit in,
+     which wraps the address on narrow screens. */
+  left: 24px;
+  right: 24px;
 }
 
 .back-link {

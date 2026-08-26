@@ -20,6 +20,14 @@
   box-sizing: border-box;
 }
 
+/* iOS Safari inflates text based on the width of the block containing it, so the
+   same 12px address came out larger — and wrapped — where the block is stretched
+   rather than shrink-wrapped. Hold every page to the sizes actually specified. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   /* The section name can start beyond the right edge while it glides in. */
@@ -359,6 +367,10 @@ main {
      which wraps the address on narrow screens. */
   left: 24px;
   right: 24px;
+  /* Shrink-wrap and centre, exactly as the home page's block does as a flex
+     child, so both pages size the text identically. */
+  width: fit-content;
+  margin-inline: auto;
 }
 
 .back-link {

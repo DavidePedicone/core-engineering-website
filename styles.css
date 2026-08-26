@@ -22,6 +22,8 @@
 
 body {
   margin: 0;
+  /* Anchors the pinned contact block on the contacts page. */
+  position: relative;
   /* The section name can start beyond the right edge while it glides in. */
   overflow-x: hidden;
   background: var(--bg);
@@ -344,6 +346,20 @@ main {
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+/* Occupies space but shows nothing, to keep two pages' layouts in step. */
+.layout-spacer {
+  visibility: hidden;
+}
+
+/* Contacts: same resting place as the block on the home page. Out of flow so the
+   back link above it centres exactly as it does on the other subpages. */
+.contact-block-pinned {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 96px;
 }
 
 .back-link {

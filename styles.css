@@ -99,9 +99,39 @@ a {
   animation: section-slide-out 250ms ease-in both;
 }
 
+/* Narrow screens: the dots sit on their own row, so there is no dot to line up
+   with horizontally. The name just glides in from the right. */
 @keyframes section-slide-in {
   from { opacity: 0; transform: translateX(150px); }
   to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Wide screens: the name starts centred on its own dot, which sits at the far
+   right of the header, and travels the whole way in.
+
+   The dot centre is 242px in from the right edge (48px padding + 220px nav, less
+   26px to the middle of the first slot), and the name starts 224px in from the
+   left (48px padding + 160px logo + 16px gap). That puts the gap between them at
+   100vw - 466px, less half the name's width — and translateX(-50%) resolves
+   against the element's own width, so this stays exact for every section name. */
+@keyframes section-slide-in-from-dot {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100vw - 466px)) translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 561px) {
+  ::view-transition-new(name-values),
+  ::view-transition-new(name-services),
+  ::view-transition-new(name-projects),
+  ::view-transition-new(name-contacts) {
+    animation-name: section-slide-in-from-dot;
+  }
 }
 
 @keyframes section-slide-out {

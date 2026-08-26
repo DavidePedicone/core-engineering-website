@@ -22,8 +22,6 @@
 
 body {
   margin: 0;
-  /* Anchors the pinned contact block on the contacts page. */
-  position: relative;
   /* The section name can start beyond the right edge while it glides in. */
   overflow-x: hidden;
   background: var(--bg);
@@ -306,6 +304,8 @@ main {
   text-align: center;
   padding: 48px 24px 96px;
   gap: 28px;
+  /* Anchors the pinned contact block on the contacts page. */
+  position: relative;
 }
 
 .tagline {

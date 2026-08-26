@@ -37,11 +37,11 @@
        height here as it does on Services, Projects and Values. -->
   <p class="placeholder-note layout-spacer" aria-hidden="true">Website under development</p>
   <a class="back-link" href="index.html">&larr; Back to Home</a>
-</main>
 
-<!-- Out of flow, so it cannot push the back link around, and pinned 96px off the
-     bottom exactly as on the home page. -->
-<div class="contact-block contact-block-pinned">
+  <!-- Out of flow, so it cannot push the back link around. Anchored to <main>,
+       which spans header-to-footer just as the home page's splash does, so it
+       lands 96px off the same edge no matter how tall the footer is. -->
+  <div class="contact-block contact-block-pinned">
     <p>Via Cottolengo 7/9, 20143 Milan, Italy</p>
     <p><a href="mailto:info@core-engineering.eu">info@core-engineering.eu</a></p>
     <p><a href="tel:+393318853187">+39 331.88.53.187</a></p>
@@ -50,7 +50,8 @@
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4v14h-4V8zm7.5 0h3.8v2.02h.05c.53-.98 1.83-2.02 3.77-2.02 4.03 0 4.78 2.5 4.78 5.75V22h-4v-6.36c0-1.52-.03-3.47-2.12-3.47-2.12 0-2.45 1.65-2.45 3.36V22h-4V8z"/></svg>
       </a>
     </div>
-</div>
+  </div>
+</main>
 
 <footer class="site-footer">
   &copy; 2026 CORE. All rights reserved.

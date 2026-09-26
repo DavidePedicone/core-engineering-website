@@ -245,10 +245,10 @@ a {
   box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--dot);
 }
 
-.circle-nav a[data-section="values"]  { --dot: var(--gold); }
+.circle-nav a[data-section="values"]  { --dot: var(--terracotta); }
 .circle-nav a[data-section="services"] { --dot: var(--ink-blue); }
 .circle-nav a[data-section="projects"] { --dot: var(--ink-teal); }
-.circle-nav a[data-section="contacts"] { --dot: var(--terracotta); }
+.circle-nav a[data-section="contacts"] { --dot: var(--gold); }
 
 /* Named so the browser morphs each dot between its old and new slot */
 .circle-nav a[data-section="values"]  .dot { view-transition-name: dot-values; }
@@ -279,10 +279,10 @@ a {
   animation-timing-function: cubic-bezier(.45, 0, .2, 1);
 }
 
-.section-values  { --section: var(--gold); }
+.section-values  { --section: var(--terracotta); }
 .section-services { --section: var(--ink-blue); }
 .section-projects { --section: var(--ink-teal); }
-.section-contacts { --section: var(--terracotta); }
+.section-contacts { --section: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
   .circle-nav .dot,

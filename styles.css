@@ -246,8 +246,8 @@ a {
 }
 
 .circle-nav a[data-section="values"]  { --dot: var(--terracotta); }
-.circle-nav a[data-section="services"] { --dot: var(--ink-blue); }
-.circle-nav a[data-section="projects"] { --dot: var(--ink-teal); }
+.circle-nav a[data-section="services"] { --dot: var(--ink-teal); }
+.circle-nav a[data-section="projects"] { --dot: var(--ink-blue); }
 .circle-nav a[data-section="contacts"] { --dot: var(--gold); }
 
 /* Named so the browser morphs each dot between its old and new slot */
@@ -280,8 +280,8 @@ a {
 }
 
 .section-values  { --section: var(--terracotta); }
-.section-services { --section: var(--ink-blue); }
-.section-projects { --section: var(--ink-teal); }
+.section-services { --section: var(--ink-teal); }
+.section-projects { --section: var(--ink-blue); }
 .section-contacts { --section: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
